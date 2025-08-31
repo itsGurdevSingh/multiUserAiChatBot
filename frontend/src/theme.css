@@ -1,0 +1,24 @@
+/* Default theme is dark */
+:root {
+  /* Dark Theme */
+  --bg-primary: #181818;     /* Black */
+  --bg-secondary: #2c2c2c;   /* Dark gray */
+  --bg-tertiary: #3a3a3a;    /* Slightly lighter gray */
+  --action-color: #007bff;   /* Blue */
+  --text-primary: #ffffff;   /* White */
+  --text-secondary: #b0b0b0; /* Light gray */
+  --card-bg: #505050;        /* Panels */
+  --hover-bg: #393939;       /* Hover */
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --bg-primary: #ffffff;     /* White */
+  --bg-secondary: #f0f0f0;   /* Light gray */
+  --bg-tertiary: #e0e0e0;    /* Slightly darker gray */
+  --action-color: #5ba9fd;   /* Blue */
+  --text-primary: #000000;   /* Black */
+  --text-secondary: #505050; /* Gray */
+  --card-bg: #f8f8f8;        /* Panels */
+  --hover-bg: #dcdcdc;       /* Hover */
+}
