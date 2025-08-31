@@ -1,31 +1,35 @@
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const express = require('express');
+const path = require('path');
 
-const authRouter = require('./routers/auth.router')
-const chatRouter = require('./routers/chat.router')
+const authRouter = require('./routers/auth.router');
+const chatRouter = require('./routers/chat.router');
 
 const app = express();
 
-app.use(express.json());
-app.use(express.urlencoded());
+// For production behind HTTPS proxy
+app.set('trust proxy', 1);
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Only needed for local dev if frontend is on different port
 app.use(cors({
-  origin: "http://localhost:5173",  // 👈 your frontend URL
-  credentials: true                 // 👈 allow cookies
+  origin: "http://localhost:5173",
+  credentials: true
 }));
+
 app.use(cookieParser());
 
-app.use('/auth',authRouter)
-app.use('/chat',chatRouter)
+app.use('/auth', authRouter);
+app.use('/chat', chatRouter);
 
-app.get('/message',(req,res) =>{
-    console.log('api hits')
-    res.json({
-        msg:'api works sucessfully'
-    })
-})
+// Serve React build
+app.use(express.static(path.join(__dirname, '../build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
+});
 
 module.exports = app;
-
-
