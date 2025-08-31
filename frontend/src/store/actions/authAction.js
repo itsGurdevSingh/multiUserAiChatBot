@@ -26,9 +26,10 @@ export const loginUserAction = (userData) => async (dispatchEvent) => {
         dispatchEvent(setLoading(true))
 
         const res = await axios.post('/auth/login', userData, { withCredentials: true })
-
+        // console.log(res)
         const user = res.data?.user
         dispatchEvent(setLoginError(null))
+        dispatchEvent(setSessionError(null))
         dispatchEvent(loadUser(user))
     } catch (error) {
 
