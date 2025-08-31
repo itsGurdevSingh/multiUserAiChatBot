@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 
 const CookieOptions = {
     httpOnly: true,
-    secure: false,   // set true if using https
+    secure: true,   // set true if using https
     sameSite: "lax"  // or "none" if cross-site cookies
 }
 
