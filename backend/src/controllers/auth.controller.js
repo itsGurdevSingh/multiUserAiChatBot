@@ -79,7 +79,7 @@ const loginUser = async (req, res) => {
 }
 const verifySession = async (req, res) => {
     const user = req.user;
-    if (!user) res.status(400).json({ message: 'please login session faild to verify' })
+    if (!user) return res.status(401).clearCookie('authToken',CookieOptions).json({ message: 'please login session faild to verify' })
 
     res.status(200).json({
         message: 'User session verified',

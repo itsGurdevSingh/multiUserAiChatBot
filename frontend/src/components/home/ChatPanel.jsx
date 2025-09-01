@@ -39,6 +39,23 @@ const ChatPanel = () => {
     reset();
   };
 
+    useEffect(() => {
+    if (!window.visualViewport) return;
+
+    const handleResize = () => {
+      document.querySelector(".chat-panel").style.height =
+        window.visualViewport.height + "px";
+    };
+
+    window.visualViewport.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      window.visualViewport.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+
   useEffect(() => {
     socket.on("ai-res", (msg) => {
       const modelMsg = {
