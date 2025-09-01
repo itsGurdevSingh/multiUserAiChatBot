@@ -41,15 +41,6 @@ export const loginUserAction = (userData) => async (dispatchEvent) => {
 export const isUserLoginAction = () => async (dispatchEvent) => {
     try {
         dispatchEvent(setLoading(true));
-
-        // ✅ Check if cookie exists before calling API
-        const authToken = Cookies.get("authToken");
-        if (!authToken) {
-            dispatchEvent(setLoading(false));
-            dispatchEvent(setSessionError("No auth token found"));
-            return; // exit early, don’t waste an API call
-        }
-
         // ✅ Token exists → now verify with backend
         const res = await axios.get("/auth/verify", { withCredentials: true });
         const user = res.data?.user;

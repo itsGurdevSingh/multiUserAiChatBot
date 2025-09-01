@@ -11,12 +11,8 @@ const LoginPage = () => {
   const {loginError} = useSelector(state => state.auth)
 
   const submitForm = (data) => {
-    console.log("Login Data:", data);
-
     dispatch(loginUserAction(data));
-    
     navigate('/')
-
     reset();
   };
 
