@@ -7,6 +7,7 @@ export const getChatsAction = () => async (dispatchEvent) => {
     try {
 
         const res = await axios.get('/chat', { withCredentials: true })
+        if(res?.data?.chats.length == 0) return dispatchEvent(createChatAction('first chat'));
 
         dispatchEvent(loadChats(res.data.chats))
 

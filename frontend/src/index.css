@@ -24,3 +24,10 @@
   font-size: small;
 }
 
+input,
+textarea,
+select {
+  font-size: clamp(16px, 2vw, 20px) !important;
+}
+
+
